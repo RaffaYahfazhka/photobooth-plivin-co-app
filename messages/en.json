@@ -1,0 +1,39 @@
+{
+    "Dashboard": {
+        "welcome": "Welcome back",
+        "title": "Dashboard",
+        "totalBalance": "Total Balance",
+        "monthlyIncome": "Monthly Income",
+        "monthlySpend": "Monthly Spend",
+        "addTransaction": "Add Transaction",
+        "monthlyBudgets": "Monthly Budgets",
+        "viewAll": "View All",
+        "recentActivities": "Recent Activities",
+        "seeDetails": "See Details"
+    },
+    "Profile": {
+        "settings": "Settings",
+        "accountInfo": "Account Information",
+        "notifications": "Notifications",
+        "appearance": "Appearance",
+        "subscription": "Subscription Plan",
+        "privacy": "Privacy & Security",
+        "help": "Help & Support",
+        "logout": "Log Out"
+    },
+    "Category": {
+        "new": "New Category",
+        "name": "Category Name",
+        "selectIcon": "Select Icon",
+        "selectColor": "Select Color",
+        "futureProjection": "Future Projection",
+        "aiSubtitle": "Automatic based on your habits",
+        "create": "Create Category",
+        "iconsCount": "{count} icons"
+    },
+    "Common": {
+        "back": "Back",
+        "close": "Close",
+        "save": "Save"
+    }
+}

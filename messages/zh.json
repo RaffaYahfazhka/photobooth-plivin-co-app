@@ -1,0 +1,39 @@
+{
+    "Dashboard": {
+        "welcome": "欢迎回来",
+        "title": "仪表板",
+        "totalBalance": "总余额",
+        "monthlyIncome": "月收入",
+        "monthlySpend": "月支出",
+        "addTransaction": "添加交易",
+        "monthlyBudgets": "每月预算",
+        "viewAll": "显示全部",
+        "recentActivities": "近期活动",
+        "seeDetails": "查看详情"
+    },
+    "Profile": {
+        "settings": "设置",
+        "accountInfo": "账户信息",
+        "notifications": "通知",
+        "appearance": "外观",
+        "subscription": "订阅计划",
+        "privacy": "隐私与安全",
+        "help": "帮助与支持",
+        "logout": "登出"
+    },
+    "Category": {
+        "new": "新类别",
+        "name": "类别名称",
+        "selectIcon": "选择图标",
+        "selectColor": "选择颜色",
+        "futureProjection": "未来预测",
+        "aiSubtitle": "根据您的习惯自动预测",
+        "create": "创建类别",
+        "iconsCount": "{count} 个图标"
+    },
+    "Common": {
+        "back": "返回",
+        "close": "关闭",
+        "save": "保存"
+    }
+}

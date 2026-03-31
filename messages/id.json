@@ -1,0 +1,39 @@
+{
+    "Dashboard": {
+        "welcome": "Selamat datang kembali",
+        "title": "Dasbor",
+        "totalBalance": "Total Saldo",
+        "monthlyIncome": "Pendapatan Bulanan",
+        "monthlySpend": "Pengeluaran Bulanan",
+        "addTransaction": "Tambah Transaksi",
+        "monthlyBudgets": "Anggaran Bulanan",
+        "viewAll": "Lihat Semua",
+        "recentActivities": "Aktivitas Terbaru",
+        "seeDetails": "Lihat Detail"
+    },
+    "Profile": {
+        "settings": "Pengaturan",
+        "accountInfo": "Informasi Akun",
+        "notifications": "Notifikasi",
+        "appearance": "Tampilan",
+        "subscription": "Paket Langganan",
+        "privacy": "Privasi & Keamanan",
+        "help": "Bantuan & Dukungan",
+        "logout": "Keluar"
+    },
+    "Category": {
+        "new": "Kategori Baru",
+        "name": "Nama Kategori",
+        "selectIcon": "Pilih Ikon",
+        "selectColor": "Pilih Warna",
+        "futureProjection": "Proyeksi Masa Depan",
+        "aiSubtitle": "Otomatis berdasarkan kebiasaan Anda",
+        "create": "Buat Kategori",
+        "iconsCount": "{count} ikon"
+    },
+    "Common": {
+        "back": "Kembali",
+        "close": "Tutup",
+        "save": "Simpan"
+    }
+}

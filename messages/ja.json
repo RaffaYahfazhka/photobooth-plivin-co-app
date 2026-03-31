@@ -1,0 +1,39 @@
+{
+    "Dashboard": {
+        "welcome": "おかえりなさい",
+        "title": "ダッシュボード",
+        "totalBalance": "総残高",
+        "monthlyIncome": "月間収入",
+        "monthlySpend": "月間支出",
+        "addTransaction": "取引を追加",
+        "monthlyBudgets": "月間予算",
+        "viewAll": "すべて表示",
+        "recentActivities": "最近の活動",
+        "seeDetails": "詳細を見る"
+    },
+    "Profile": {
+        "settings": "設定",
+        "accountInfo": "アカウント情報",
+        "notifications": "通知",
+        "appearance": "外見",
+        "subscription": "購読プラン",
+        "privacy": "プライバシーとセキュリティ",
+        "help": "ヘルプとサポート",
+        "logout": "ログアウト"
+    },
+    "Category": {
+        "new": "新しいカテゴリー",
+        "name": "カテゴリー名",
+        "selectIcon": "アイコンを選択",
+        "selectColor": "色を選択",
+        "futureProjection": "将来の予測",
+        "aiSubtitle": "あなたの習慣に基づく自動予測",
+        "create": "カテゴリーを作成",
+        "iconsCount": "{count} 個のアイコン"
+    },
+    "Common": {
+        "back": "戻る",
+        "close": "閉じる",
+        "save": "保存"
+    }
+}

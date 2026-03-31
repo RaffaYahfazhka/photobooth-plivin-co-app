@@ -1,0 +1,39 @@
+{
+    "Dashboard": {
+        "welcome": "Selamat kembali",
+        "title": "Papan Pemuka",
+        "totalBalance": "Jumlah Baki",
+        "monthlyIncome": "Pendapatan Bulanan",
+        "monthlySpend": "Perbelanjaan Bulanan",
+        "addTransaction": "Tambah Transaksi",
+        "monthlyBudgets": "Belanjawan Bulanan",
+        "viewAll": "Lihat Semua",
+        "recentActivities": "Aktiviti Terbaru",
+        "seeDetails": "Lihat Butiran"
+    },
+    "Profile": {
+        "settings": "Tetapan",
+        "accountInfo": "Maklumat Akaun",
+        "notifications": "Pemberitahuan",
+        "appearance": "Rupa Paras",
+        "subscription": "Pelan Langganan",
+        "privacy": "Privasi & Keselamatan",
+        "help": "Bantuan & Sokongan",
+        "logout": "Log Keluar"
+    },
+    "Category": {
+        "new": "Kategori Baru",
+        "name": "Nama Kategori",
+        "selectIcon": "Pilih Ikon",
+        "selectColor": "Pilih Warna",
+        "futureProjection": "Unjuran Masa Depan",
+        "aiSubtitle": "Automatik berdasarkan tabiat anda",
+        "create": "Buat Kategori",
+        "iconsCount": "{count} ikon"
+    },
+    "Common": {
+        "back": "Kembali",
+        "close": "Tutup",
+        "save": "Simpan"
+    }
+}
