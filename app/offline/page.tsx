@@ -1,5 +1,3 @@
-"use client";
-
 export default function OfflinePage() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen px-6 text-center bg-slate-50 dark:bg-zinc-950">
@@ -12,12 +10,12 @@ export default function OfflinePage() {
             <p className="text-slate-500 dark:text-slate-400 font-medium max-w-xs mb-8">
                 Sepertinya koneksi internetmu sedang terputus. Coba periksa kembali jaringanmu, ya!
             </p>
-            <button
-                onClick={() => window.location.reload()}
-                className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/25"
+            <a
+                href="/"
+                className="inline-block px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/25"
             >
                 Coba Lagi
-            </button>
+            </a>
         </div>
     );
 }
