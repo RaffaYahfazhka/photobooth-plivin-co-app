@@ -5,6 +5,7 @@ import { Wallet, Bell } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { createClient } from "@/lib/supabase/client";
+import { Logo, LogoText } from "./Logo";
 
 export default function Header() {
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
@@ -67,11 +68,9 @@ export default function Header() {
 
     return (
         <header className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 px-6 py-4 sticky top-0 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md z-50">
-            <Link href="/dashboard" className="flex items-center gap-3">
-                <div className="size-8 bg-primary dark:bg-indigo-600 text-white flex items-center justify-center rounded-lg shadow-sm">
-                    <Wallet className="w-5 h-5" />
-                </div>
-                <h2 className="text-slate-900 dark:text-slate-100 text-lg font-bold tracking-tight">Plivin.co</h2>
+            <Link href="/dashboard" className="flex items-center gap-2 text-black dark:text-white">
+                <Logo />
+                <LogoText className="text-xl" />
             </Link>
             <div className="flex items-center gap-3">
                 <Link href="/dashboard/notifications">
