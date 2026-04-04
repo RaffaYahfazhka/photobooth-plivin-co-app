@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowLeft, Check, Sparkles, Zap, Lock, Crown, Loader2, X, PartyPopper } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ const PRO_FEATURES = [
     "Support prioritas",
 ];
 
-export default function SubscriptionPage() {
+function SubscriptionContent() {
     const searchParams = useSearchParams();
     const paymentStatus = searchParams.get("status");
 
@@ -263,5 +263,17 @@ export default function SubscriptionPage() {
                 )}
             </div>
         </div>
+    );
+}
+
+export default function SubscriptionPage() {
+    return (
+        <Suspense fallback={
+            <div className="flex items-center justify-center min-h-screen">
+                <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+        }>
+            <SubscriptionContent />
+        </Suspense>
     );
 }
