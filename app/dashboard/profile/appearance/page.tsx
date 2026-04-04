@@ -67,7 +67,7 @@ export default function AppearancePage() {
                                 : "border-slate-100 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900 hover:border-slate-300 dark:hover:border-zinc-700"
                         )}
                     >
-                        <div className="size-12 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-500 dark:text-indigo-400 rounded-full flex items-center justify-center shrink-0">
+                        <div className="size-12 bg-slate-100 dark:bg-zinc-800 text-slate-500 dark:text-zinc-400 rounded-full flex items-center justify-center shrink-0">
                             <Moon className="w-6 h-6" />
                         </div>
                         <div className="flex-1 text-left">

@@ -6274,6 +6274,11 @@ wsl-utils@^0.3.0:
     is-wsl "^3.1.0"
     powershell-utils "^0.1.0"
 
+xendit-node@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/xendit-node/-/xendit-node-7.0.0.tgz#43c63515c80bdf4457605fe7f07b8b83868aa618"
+  integrity sha512-atsCQ9femoWLu+hU5rY0TZ+ZhqSYbpTtABZN7rGMhhBh1xLhTuY1rgLfoaXzFiRt3eOQRqsew78wPUcQn1QckA==
+
 y18n@^5.0.5:
   version "5.0.8"
   resolved "https://registry.npmjs.org/y18n/-/y18n-5.0.8.tgz"

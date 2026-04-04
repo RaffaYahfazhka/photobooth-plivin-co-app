@@ -28,7 +28,7 @@ const COLORS = [
     { name: "rose", class: "bg-rose-500", light: "bg-rose-100 text-rose-600" },
     { name: "emerald", class: "bg-emerald-500", light: "bg-emerald-100 text-emerald-600" },
     { name: "amber", class: "bg-amber-500", light: "bg-amber-100 text-amber-600" },
-    { name: "purple", class: "bg-purple-500", light: "bg-purple-100 text-purple-600" },
+    { name: "purple", class: "bg-primary", light: "bg-purple-100 text-primary" },
     { name: "teal", class: "bg-teal-500", light: "bg-teal-100 text-teal-600" },
 ];
 

@@ -78,9 +78,9 @@ export default function WalletPage() {
 
             {/* Total Balance */}
             <div className="px-6 mb-8">
-                <div className="bg-gradient-to-br from-indigo-600 to-indigo-900 dark:from-indigo-900 dark:to-zinc-900 rounded-3xl p-6 text-white shadow-xl shadow-indigo-600/20 relative overflow-hidden">
+                <div className="bg-slate-900 dark:bg-zinc-800 border border-transparent dark:border-zinc-700/80 rounded-3xl p-6 text-white shadow-xl shadow-slate-900/20 dark:shadow-none relative overflow-hidden">
                     <div className="relative z-10">
-                        <p className="text-indigo-200 text-[10px] font-bold uppercase tracking-widest mb-1">Total Limit / Saldo</p>
+                        <p className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-1">Total Limit / Saldo</p>
                         <h2 className="text-3xl font-black">{formatRp(totalBalance)}</h2>
                         <div className="flex gap-6 mt-6">
                             <div className="flex items-center gap-2">

@@ -40,7 +40,7 @@ const colors = [
     { name: 'blue', hex: '#3b82f6', class: 'bg-blue-500' },
     { name: 'emerald', hex: '#10b981', class: 'bg-emerald-500' },
     { name: 'orange', hex: '#f97316', class: 'bg-orange-500' },
-    { name: 'purple', hex: '#a855f7', class: 'bg-purple-500' },
+    { name: 'slate', hex: '#475569', class: 'bg-slate-600' },
     { name: 'rose', hex: '#f43f5e', class: 'bg-rose-500' },
 ];
 
@@ -163,15 +163,15 @@ export function CreateCategoryForm() {
 
             {/* Scrollable Bottom Action */}
             <div className="mt-8">
-                <Button
-                    onClick={handleSave}
-                    disabled={saving}
-                    className={cn(
-                        "w-full h-16 rounded-2xl font-black text-lg text-white transition-all shadow-xl active:scale-95 group relative overflow-hidden",
-                        "bg-gradient-to-r from-primary to-indigo-600 hover:from-primary/90 hover:to-indigo-500",
-                        saving && "opacity-80 cursor-not-allowed"
-                    )}
-                >
+                    <Button
+                        onClick={handleSave}
+                        disabled={saving}
+                        className={cn(
+                            "w-full h-16 rounded-2xl font-black text-lg text-white transition-all shadow-xl active:scale-95 group relative overflow-hidden",
+                            "bg-primary hover:bg-black/90 dark:hover:bg-white/90",
+                            saving && "opacity-80 cursor-not-allowed"
+                        )}
+                    >
                     <span className="relative z-10 flex items-center justify-center gap-2">
                         {saving ? (
                             <>

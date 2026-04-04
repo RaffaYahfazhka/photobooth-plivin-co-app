@@ -95,10 +95,16 @@ export default function DashboardPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const supabase = createClient();
-            const { data: { user } } = await supabase.auth.getUser();
+            setLoading(true);
+            try {
+                const supabase = createClient();
+                const { data: { user } } = await supabase.auth.getUser();
 
-            if (user) {
+                if (!user) {
+                    setLoading(false);
+                    return;
+                }
+
                 // Get profile
                 const { data: profile } = await supabase
                     .from("profiles")
@@ -110,86 +116,76 @@ export default function DashboardPage() {
                     setUserName(profile.full_name.split(" ")[0]);
                 }
 
-                // Get custom categories
-                const { data: catData } = await supabase
-                    .from("custom_categories")
-                    .select("*")
-                    .eq("user_id", user.id);
+                // Fetch everything in parallel for better performance
+                const [
+                    { data: catData },
+                    { data: txs },
+                    { data: allAccs },
+                    { data: bData }
+                ] = await Promise.all([
+                    supabase.from("custom_categories").select("*").eq("user_id", user.id),
+                    supabase.from("transactions").select("*").eq("user_id", user.id).order("created_at", { ascending: false }).limit(10),
+                    supabase.from("accounts").select("*").eq("user_id", user.id),
+                    supabase.from("budgets").select("*").eq("user_id", user.id).eq("month", new Date().getMonth() + 1).eq("year", new Date().getFullYear())
+                ]);
+
                 if (catData) setCustomCategories(catData);
+                if (txs) setTransactions(txs);
+                if (allAccs) setUserAccounts(allAccs);
 
-                // Get transactions
-                const { data: txs } = await supabase
-                    .from("transactions")
-                    .select("*")
-                    .eq("user_id", user.id)
-                    .order("created_at", { ascending: false })
-                    .limit(10);
-
-                if (txs) {
-                    setTransactions(txs);
-
-                    // Calculate quick stats (this month)
-                    const now = new Date();
-                    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
-
-                    const { data: monthTxs } = await supabase
-                        .from("transactions")
-                        .select("amount, type, category")
-                        .eq("user_id", user.id)
-                        .gte("created_at", firstDay);
-
-                    let income = 0;
-                    let expense = 0;
-                    monthTxs?.forEach(t => {
-                        if (t.type === 'income') income += t.amount;
-                        else expense += t.amount;
+                // Calculate total balance from accounts
+                let totalBalance = 0;
+                if (allAccs) {
+                    allAccs.forEach(a => {
+                        totalBalance += Number(a.balance) || 0;
                     });
-
-                    // Calculate total balance (all time)
-                    const { data: allTxs } = await supabase
-                        .from("transactions")
-                        .select("amount, type")
-                        .eq("user_id", user.id);
-
-                    // Ambil saldo dari akun/dompet sebagai total balance utama
-                    const { data: allAccs } = await supabase
-                        .from("accounts")
-                        .select("*")
-                        .eq("user_id", user.id);
-
-                    let totalBalance = 0;
-                    if (allAccs) {
-                        setUserAccounts(allAccs);
-                        allAccs.forEach(a => {
-                            totalBalance += Number(a.balance) || 0;
-                        });
-                    }
-
-                    setStats({ balance: totalBalance, income, expense });
-
-                    // Budgets
-                    const currentMonth = now.getMonth() + 1;
-                    const currentYear = now.getFullYear();
-
-                    const { data: bData } = await supabase
-                        .from("budgets")
-                        .select("*")
-                        .eq("user_id", user.id)
-                        .eq("month", currentMonth)
-                        .eq("year", currentYear);
-
-                    if (bData) {
-                        const monthExpenses = monthTxs ? monthTxs.filter((t: any) => t.type === "expense") : [];
-                        const calculatedBudgets = bData.map((b: any) => {
-                            const spent = monthExpenses.filter((t: any) => t.category === b.category).reduce((sum: number, t: any) => sum + t.amount, 0);
-                            return { ...b, spent };
-                        }).sort((a, b) => (b.spent / b.amount) - (a.spent / a.amount)); // sort by highest percentage
-
-                        setDashBudgets(calculatedBudgets.slice(0, 5));
-                    }
                 }
+
+                // Fetch monthly transactions for stats
+                const now = new Date();
+                const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+                
+                const { data: monthTxs, error: monthError } = await supabase
+                    .from("transactions")
+                    .select("amount, type, category")
+                    .eq("user_id", user.id)
+                    .gte("created_at", firstDay);
+
+                if (monthError) {
+                    console.error("Error fetching monthly transactions:", monthError);
+                }
+
+                let income = 0;
+                let expense = 0;
+                
+                if (monthTxs) {
+                    monthTxs.forEach(t => {
+                        const amount = Number(t.amount) || 0;
+                        if (t.type === 'income') income += amount;
+                        else expense += amount;
+                    });
+                }
+
+                setStats({ balance: totalBalance, income, expense });
+
+                // Calculate budgets
+                if (bData) {
+                    const monthExpenses = monthTxs ? monthTxs.filter((t: any) => t.type === "expense") : [];
+                    const calculatedBudgets = bData.map((b: any) => {
+                        const spent = monthExpenses
+                            .filter((t: any) => t.category === b.category)
+                            .reduce((sum: number, t: any) => sum + (Number(t.amount) || 0), 0);
+                        return { ...b, spent };
+                    }).sort((a, b) => (b.spent / b.amount) - (a.spent / a.amount));
+
+                    setDashBudgets(calculatedBudgets.slice(0, 5));
+                }
+
+            } catch (err) {
+                console.error("Dashboard fetchData error:", err);
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
         };
 
         fetchData();
@@ -248,7 +244,7 @@ export default function DashboardPage() {
                                                     return (
                                                         <div key={i} className="flex items-center justify-between p-3.5 bg-slate-50/50 dark:bg-zinc-900 rounded-2xl border border-slate-100/50 dark:border-zinc-800">
                                                             <div className="flex items-center gap-3">
-                                                                <div className={cn("size-10 rounded-xl flex items-center justify-center border border-slate-100 dark:border-zinc-700/50 shadow-sm", acc.color || "bg-white dark:bg-zinc-800 text-indigo-500")}>
+                                                                <div className={cn("size-10 rounded-xl flex items-center justify-center border border-slate-100 dark:border-zinc-700/50 shadow-sm", acc.color || "bg-white dark:bg-zinc-800 text-primary")}>
                                                                     <Icon className="w-5 h-5 shadow-sm" />
                                                                 </div>
                                                                 <div>
@@ -297,15 +293,15 @@ export default function DashboardPage() {
             {/* Quick Actions */}
             <div className="px-6 mb-10 grid grid-cols-2 gap-3">
                 <Link href="/dashboard/transactions/create">
-                    <Button className="w-full bg-primary dark:bg-indigo-600 text-white py-4 rounded-xl font-bold flex flex-col items-center justify-center gap-1.5 hover:opacity-90 transition-all h-auto shadow-md">
+                    <Button className="w-full bg-primary dark:bg-white text-white dark:text-black py-4 rounded-xl font-bold flex flex-col items-center justify-center gap-1.5 hover:opacity-90 transition-all h-auto shadow-md">
                         <PlusCircle className="w-5 h-5 mb-0.5" />
                         <span className="text-xs">Catat Transaksi</span>
                     </Button>
                 </Link>
                 <Link href="/dashboard/categories/create">
                     <Button variant="outline" className="w-full py-4 rounded-xl font-bold border-slate-200 dark:border-zinc-800 hover:bg-slate-50 dark:hover:bg-zinc-800/50 flex flex-col items-center justify-center gap-1.5 h-auto text-primary dark:text-white shadow-sm font-black">
-                        <div className="size-6 bg-primary dark:bg-indigo-600 rounded-lg flex items-center justify-center">
-                            <PlusCircle className="w-4 h-4 text-white" />
+                        <div className="size-6 bg-primary dark:bg-white rounded-lg flex items-center justify-center">
+                            <PlusCircle className="w-4 h-4 text-white dark:text-black" />
                         </div>
                         <span className="text-xs">Buat Kategori</span>
                     </Button>

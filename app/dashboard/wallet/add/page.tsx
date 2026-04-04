@@ -13,7 +13,7 @@ import { createClient } from "@/lib/supabase/client";
 const accountTypes = [
     { id: "bank", label: "Bank", icon: Building2, color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-900/20" },
     { id: "ewallet", label: "E-Wallet", icon: Smartphone, color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-900/20" },
-    { id: "credit", label: "Kartu Kredit", icon: CreditCard, color: "text-purple-500", bg: "bg-purple-50 dark:bg-purple-900/20" },
+    { id: "credit", label: "Kartu Kredit", icon: CreditCard, color: "text-slate-700 dark:text-white", bg: "bg-slate-50 dark:bg-zinc-800" },
     { id: "cash", label: "Tunai", icon: Wallet, color: "text-amber-500", bg: "bg-amber-50 dark:bg-amber-900/20" },
 ];
 

@@ -170,7 +170,7 @@ export default function EditProfilePage() {
 
             {loading ? (
                 <div className="flex-1 flex items-center justify-center">
-                    <Loader2 className="w-8 h-8 text-primary dark:text-indigo-500 animate-spin" />
+                    <Loader2 className="w-8 h-8 text-primary dark:text-white animate-spin" />
                 </div>
             ) : (
                 <form onSubmit={handleSave} className="flex-1 px-6 py-8 space-y-8">
@@ -189,7 +189,7 @@ export default function EditProfilePage() {
                                     )}
                                     <AvatarFallback>{getInitials(name)}</AvatarFallback>
                                 </Avatar>
-                                <div className="absolute bottom-0 right-0 bg-primary dark:bg-indigo-600 text-white p-2 rounded-full border-2 border-white dark:border-zinc-800 shadow-sm pointer-events-none">
+                                <div className="absolute bottom-0 right-0 bg-primary dark:bg-white text-white dark:text-black p-2 rounded-full border-2 border-white dark:border-zinc-800 shadow-sm pointer-events-none">
                                     <Camera className="w-5 h-5 flex-shrink-0" />
                                 </div>
                             </Label>
@@ -286,7 +286,7 @@ export default function EditProfilePage() {
                         <Button
                             type="submit"
                             disabled={saving || success}
-                            className="w-full h-14 rounded-2xl font-bold text-base bg-primary dark:bg-indigo-600 text-white hover:bg-primary/90 dark:hover:bg-indigo-500 flex items-center justify-center shadow-lg shadow-primary/25 dark:shadow-none disabled:opacity-70"
+                            className="w-full h-14 rounded-2xl font-bold text-base bg-primary dark:bg-white text-white dark:text-black hover:bg-primary/90 dark:hover:bg-slate-100 flex items-center justify-center shadow-lg shadow-primary/25 dark:shadow-none disabled:opacity-70"
                         >
                             {saving ? (
                                 <>

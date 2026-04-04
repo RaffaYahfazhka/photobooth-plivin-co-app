@@ -130,7 +130,7 @@ export default function NotificationsPage() {
                     <Button
                         variant="link"
                         onClick={markAllAsRead}
-                        className="p-0 h-auto text-xs font-bold text-primary dark:text-indigo-400 flex items-center gap-1.5"
+                        className="p-0 h-auto text-xs font-bold text-primary dark:text-white/80 flex items-center gap-1.5"
                     >
                         <CheckCheck className="w-4 h-4" />
                         Tandai semua sudah dibaca

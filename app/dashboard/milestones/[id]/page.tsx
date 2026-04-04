@@ -29,7 +29,7 @@ const COLORS: Record<string, { main: string, light: string }> = {
     rose: { main: "bg-rose-500", light: "bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400" },
     emerald: { main: "bg-emerald-500", light: "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400" },
     amber: { main: "bg-amber-500", light: "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400" },
-    purple: { main: "bg-purple-500", light: "bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400" },
+    slate: { main: "bg-slate-700", light: "bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-slate-300" },
     teal: { main: "bg-teal-500", light: "bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400" },
 };
 
@@ -281,7 +281,7 @@ export default function MilestoneDetail({ params }: { params: Promise<{ id: stri
                         <Button 
                             onClick={handleAddSavings} 
                             disabled={isSaving || !saveAmount}
-                            className="w-full h-14 mt-2 rounded-2xl font-bold text-base bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-600/20"
+                            className="w-full h-14 mt-2 rounded-2xl font-bold text-base bg-primary hover:bg-black/90 dark:hover:bg-white/90 text-white dark:text-black shadow-lg shadow-primary/20"
                         >
                             {isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : "Setor & Simpan"}
                         </Button>

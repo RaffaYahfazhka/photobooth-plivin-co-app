@@ -106,7 +106,7 @@ export default function ProfilePage() {
                         </h2>
                         <p className="text-slate-500 text-sm">{profile?.email || ""}</p>
                         <Link href="/dashboard/profile/subscription">
-                            <div className="mt-4 inline-flex items-center px-4 py-1.5 rounded-full bg-primary/10 dark:bg-indigo-600/20 text-primary dark:text-indigo-300 text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-primary/20 dark:hover:bg-indigo-600/30 transition-colors">
+                            <div className="mt-4 inline-flex items-center px-4 py-1.5 rounded-full bg-primary/10 dark:bg-white/10 text-primary dark:text-white text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-primary/20 dark:hover:bg-white/20 transition-colors border border-primary/20 dark:border-white/20">
                                 {profile?.plan === "pro" ? "Member Pro" : "Free Plan"}
                             </div>
                         </Link>
