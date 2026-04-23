@@ -377,10 +377,9 @@ const PhotoStrip = ({
 
         <button
           onClick={onReset}
-          className="rounded-full border px-6 py-2.5 font-semibold"
+          className="rounded-full border border-foreground/20 bg-secondary px-6 py-2.5 font-semibold transition-all hover:bg-secondary/80"
         >
-          <Camera size={18} className="inline mr-2" />
-          Foto Lagi
+          Selesai
         </button>
       </div>
     </div>

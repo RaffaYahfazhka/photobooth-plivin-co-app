@@ -51,8 +51,14 @@ export function useCamera() {
       canvas.height = video.videoHeight;
       const ctx = canvas.getContext("2d")!;
       ctx.filter = FILTER_CSS[filter];
-      // No mirror - draw directly
+      
+      // Mirror canvas so output matches the live preview
+      ctx.translate(canvas.width, 0);
+      ctx.scale(-1, 1);
+      
       ctx.drawImage(video, 0, 0);
+      
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.filter = "none";
       return canvas.toDataURL("image/png");
     },
@@ -65,5 +71,5 @@ export function useCamera() {
     };
   }, [stream]);
 
-  return { videoRef, canvasRef, startCamera, stopCamera, capturePhoto, isReady, error };
+  return { videoRef, canvasRef, startCamera, stopCamera, capturePhoto, isReady, error, stream };
 }

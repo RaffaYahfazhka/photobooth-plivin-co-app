@@ -148,3 +148,86 @@ export interface StripCustomization {
   frameId: string;
   filter: StripFilterType;
 }
+
+/* ======================================
+   ✅ BOOTH PACKAGES
+====================================== */
+
+export const BASIC_FILTERS: StripFilterType[] = ["normal", "bw", "soft"];
+export const ALL_FILTERS: StripFilterType[] = ["normal", "bw", "country", "vintage", "soft", "intax", "dv"];
+
+export interface BoothPackage {
+  id: string;
+  name: string;
+  price: number;          // in IDR
+  maxRetakes: number;
+  allowedLayouts: string[];  // layout IDs e.g. ["1x4", "2x2"]
+  allowedFilters: StripFilterType[];
+  features: string[];
+  popular?: boolean;
+}
+
+export const BOOTH_PACKAGES: BoothPackage[] = [
+  {
+    id: "basic",
+    name: "Basic",
+    price: 10000,
+    maxRetakes: 0,
+    allowedLayouts: ["1x4", "2x2"],
+    allowedFilters: BASIC_FILTERS,
+    features: [
+      "1x Photo Strip (4 foto)",
+      "3 filter (Normal, BW, Soft)",
+      "Layout 1×4 atau 2×2",
+      "Download digital",
+    ],
+  },
+  {
+    id: "standard",
+    name: "Standard",
+    price: 20000,
+    maxRetakes: 1,
+    allowedLayouts: ["1x4", "2x2", "2x3"],
+    allowedFilters: ALL_FILTERS,
+    popular: true,
+    features: [
+      "1x Photo Strip (4-6 foto)",
+      "Semua filter tersedia",
+      "Layout 1×4, 2×2, atau 2×3",
+      "1x Retake",
+      "Download digital",
+    ],
+  },
+  {
+    id: "premium",
+    name: "Premium",
+    price: 35000,
+    maxRetakes: 2,
+    allowedLayouts: ["1x4", "2x2", "2x3", "2x4"],
+    allowedFilters: ALL_FILTERS,
+    features: [
+      "1x Photo Strip (4-8 foto)",
+      "Semua filter tersedia",
+      "Semua layout tersedia",
+      "2x Retake",
+      "Download digital",
+    ],
+  },
+];
+
+export type BoothStep = "welcome" | "package" | "payment" | "setup" | "capture" | "customize";
+
+export interface BoothSession {
+  step: BoothStep;
+  selectedPackage: BoothPackage | null;
+  isPaid: boolean;
+  retakesUsed: number;
+}
+
+export const INITIAL_SESSION: BoothSession = {
+  step: "welcome",
+  selectedPackage: null,
+  isPaid: false,
+  retakesUsed: 0,
+};
+

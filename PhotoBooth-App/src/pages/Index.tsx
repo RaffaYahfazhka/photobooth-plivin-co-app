@@ -1,5 +1,5 @@
-import CameraView from "@/components/CameraView";
+import SessionManager from "@/components/SessionManager";
 
-const Index = () => <CameraView />;
+const Index = () => <SessionManager />;
 
 export default Index;
