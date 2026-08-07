@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import {
+  BOOTH_PACKAGES,
   BoothPackage,
   BoothSession,
   INITIAL_SESSION,
@@ -34,8 +35,13 @@ const SessionManager = () => {
 
   /* ---- Step transitions ---- */
 
-  const goToPackage = () =>
-    setSession((s) => ({ ...s, step: "package" }));
+  const startPhotobooth = () =>
+    setSession((s) => ({
+      ...s,
+      step: "setup",
+      selectedPackage: BOOTH_PACKAGES[2] || BOOTH_PACKAGES[0], // Premium package with all features
+      isPaid: true,
+    }));
 
   const selectPackage = (pkg: BoothPackage) =>
     setSession((s) => ({ ...s, step: "setup", selectedPackage: pkg, isPaid: true }));
@@ -68,23 +74,17 @@ const SessionManager = () => {
 
   switch (session.step) {
     case "welcome":
-      return <WelcomeScreen onStart={goToPackage} />;
+      return <WelcomeScreen onStart={startPhotobooth} />;
 
     case "package":
-      return (
-        <PackageSelector
-          onSelect={selectPackage}
-          onBack={() => setSession((s) => ({ ...s, step: "welcome" }))}
-        />
-      );
-
     case "payment":
-      // Payment disabled temporarily: skip straight to layout setup
-      if (session.selectedPackage) {
-        setSession((s) => ({ ...s, step: "setup", isPaid: true }));
-      } else {
-        setSession((s) => ({ ...s, step: "package" }));
-      }
+      // Package & payment disabled temporarily: skip straight to layout setup
+      setSession((s) => ({
+        ...s,
+        step: "setup",
+        selectedPackage: s.selectedPackage || BOOTH_PACKAGES[2] || BOOTH_PACKAGES[0],
+        isPaid: true,
+      }));
       return null;
 
     case "setup":
@@ -92,7 +92,7 @@ const SessionManager = () => {
         <LayoutSelectionScreen
           session={session}
           onSelect={onLayoutSelected}
-          onBack={() => setSession((s) => ({ ...s, step: "package" }))}
+          onBack={() => setSession((s) => ({ ...s, step: "welcome" }))}
         />
       ) : null;
 
@@ -108,7 +108,7 @@ const SessionManager = () => {
       ) : null;
 
     default:
-      return <WelcomeScreen onStart={goToPackage} />;
+      return <WelcomeScreen onStart={startPhotobooth} />;
   }
 };
 
